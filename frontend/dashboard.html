@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | Windspeed Racing</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,500;0,700;0,900;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+
+    <!-- ═══ SIDEBAR ════════════════════════════════════════════════════════ -->
+    <aside class="sidebar">
+        <div class="sidebar-logo">
+            <a href="index.html">Windspeed <span>RACING</span></a>
+        </div>
+
+        <nav class="sidebar-nav">
+            <ul>
+                <li class="active"><a href="dashboard.html">⬛ Dashboard</a></li>
+                <li><a href="index.html#equipe">👤 Equipe</a></li>
+                <li><a href="index.html#carro">🚗 O Carro</a></li>
+                <li><a href="index.html#fanzone">🏁 Fanzone</a></li>
+                <li><a href="login.html">🔒 Sair</a></li>
+            </ul>
+        </nav>
+
+        <div class="sidebar-season">
+            <span class="season-tag">TEMPORADA 2026</span>
+        </div>
+    </aside>
+
+    <!-- ═══ MAIN CONTENT ════════════════════════════════════════════════════ -->
+    <main class="dash-main">
+
+        <!-- TOPBAR -->
+        <header class="dash-topbar">
+            <div class="topbar-title">
+                <h1>Painel da Temporada</h1>
+                <p>Última atualização: <span id="last-updated">—</span></p>
+            </div>
+            <div class="topbar-actions">
+                <a href="index.html" class="btn-back">← Voltar ao Site</a>
+            </div>
+        </header>
+
+        <!-- ─── KPI CARDS ─────────────────────────────────────────────────── -->
+        <!--
+            Os spans com id="kpi-*" são preenchidos pelo dashboard.js.
+            Classe "loading" é removida após o fetch completar.
+        -->
+        <section id="kpi-section" class="kpi-grid">
+
+            <div class="kpi-card loading featured-kpi">
+                <span class="kpi-label">Posição no Campeonato</span>
+                <span class="kpi-value" id="kpi-position">—</span>
+                <span class="kpi-sub">Construtores 2026</span>
+            </div>
+
+            <div class="kpi-card loading">
+                <span class="kpi-label">Pontos</span>
+                <span class="kpi-value" id="kpi-points">—</span>
+                <span class="kpi-sub">Total na temporada</span>
+            </div>
+
+            <div class="kpi-card loading">
+                <span class="kpi-label">Vitórias</span>
+                <span class="kpi-value" id="kpi-wins">—</span>
+                <span class="kpi-sub">em 12 corridas</span>
+            </div>
+
+            <div class="kpi-card loading">
+                <span class="kpi-label">Pódios</span>
+                <span class="kpi-value" id="kpi-podiums">—</span>
+                <span class="kpi-sub">em 12 corridas</span>
+            </div>
+
+            <!-- KPI DESTAQUE: Voltas -->
+            <div class="kpi-card loading kpi-laps">
+                <span class="kpi-label">◎ Voltas Completadas</span>
+                <span class="kpi-value" id="kpi-laps">—</span>
+                <span class="kpi-sub">Ambos os pilotos · Temporada 2026</span>
+            </div>
+
+            <div class="kpi-card loading">
+                <span class="kpi-label">DNFs</span>
+                <span class="kpi-value" id="kpi-dnfs">—</span>
+                <span class="kpi-sub">Abandonos na temporada</span>
+            </div>
+
+        </section>
+
+        <!-- ─── LINHA PRINCIPAL: RESULTADOS + STANDINGS ───────────────────── -->
+        <div class="dash-row">
+
+            <!-- Tabela de Resultados -->
+            <section id="results-section" class="dash-card dash-card--wide">
+                <div class="dash-card-header">
+                    <h2>Resultados das Corridas</h2>
+                    <span class="badge">2026</span>
+                </div>
+                <div class="table-wrapper">
+                    <table class="results-table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Grande Prêmio</th>
+                                <th>Hugo Garcia</th>
+                                <th>Erick Rocha</th>
+                                <th>Pontos</th>
+                            </tr>
+                        </thead>
+                        <tbody id="results-tbody">
+                            <!-- Preenchido por dashboard.js -->
+                            <tr><td colspan="5" class="loading-row">Carregando resultados...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Classificação de Construtores -->
+            <section id="standings-section" class="dash-card">
+                <div class="dash-card-header">
+                    <h2>Construtores</h2>
+                    <span class="badge">Camp. 2026</span>
+                </div>
+                <div id="standings-list">
+                    <!-- Preenchido por dashboard.js -->
+                    <p class="loading-row">Carregando classificação...</p>
+                </div>
+            </section>
+
+        </div>
+
+        <!-- ─── COMPARATIVO DE PILOTOS ────────────────────────────────────── -->
+        <section id="comparison-section" class="dash-card dash-card--full">
+            <div class="dash-card-header">
+                <h2>Comparativo de Pilotos</h2>
+                <span class="badge">Temporada 2026</span>
+            </div>
+            <div id="driver-comparison">
+                <!-- Preenchido por dashboard.js -->
+                <p class="loading-row">Carregando comparativo...</p>
+            </div>
+        </section>
+
+        <footer class="dash-footer">
+            <p>&copy; 2026 Windspeed Racing · Dashboard Interno · (Site Fictício)</p>
+        </footer>
+
+    </main>
+
+    <script src="api-mock.js"></script>
+    <script src="dashboard.js"></script>
+</body>
+</html>

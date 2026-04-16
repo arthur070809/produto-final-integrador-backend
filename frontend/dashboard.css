@@ -1,0 +1,347 @@
+/* ═══════════════════════════════════════════════════════════════
+   dashboard.css — WINDSPEED RACING · PAINEL DE CONTROLE
+   ═══════════════════════════════════════════════════════════════ */
+
+   :root {
+    --bg-dark:        #06080f;
+    --bg-card:        #0f1424;
+    --bg-sidebar:     #090c19;
+    --primary-blue:   #007bff;
+    --primary-purple: #8a2be2;
+    --primary-pink:   #ff2e88;
+    --primary-red:    #ff1e1e;
+    --primary-green:  #00e676;
+    --gradient-main:  linear-gradient(90deg, #007bff, #8a2be2, #ff2e88);
+    --text-light:     #ffffff;
+    --text-muted:     #9aa4b2;
+    --font-main:      'Montserrat', sans-serif;
+    --transition-fast: 0.3s ease;
+    --sidebar-width:  240px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: var(--font-main); background-color: var(--bg-dark); color: var(--text-light); display: flex; min-height: 100vh; }
+a { text-decoration: none; color: inherit; }
+ul { list-style: none; }
+
+/* ─── SIDEBAR ─────────────────────────────────────────────────────────────── */
+.sidebar {
+    width: var(--sidebar-width);
+    background: var(--bg-sidebar);
+    border-right: 1px solid rgba(255, 255, 255, 0.05);
+    display: flex;
+    flex-direction: column;
+    padding: 30px 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    z-index: 100;
+}
+
+.sidebar-logo {
+    font-size: 1.1rem;
+    font-weight: 900;
+    font-style: italic;
+    text-transform: uppercase;
+    margin-bottom: 40px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.sidebar-logo span {
+    background: var(--gradient-main);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.sidebar-nav ul { display: flex; flex-direction: column; gap: 5px; }
+
+.sidebar-nav a {
+    display: block;
+    padding: 10px 14px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    transition: var(--transition-fast);
+    letter-spacing: 0.5px;
+}
+
+.sidebar-nav a:hover,
+.sidebar-nav li.active a {
+    background: rgba(255, 46, 136, 0.12);
+    color: var(--text-light);
+    border-left: 3px solid var(--primary-pink);
+    padding-left: 11px;
+}
+
+.sidebar-season {
+    margin-top: auto;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.season-tag {
+    display: inline-block;
+    background: rgba(138, 43, 226, 0.2);
+    border: 1px solid rgba(138, 43, 226, 0.4);
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: var(--primary-purple);
+}
+
+/* ─── MAIN ────────────────────────────────────────────────────────────────── */
+.dash-main {
+    margin-left: var(--sidebar-width);
+    flex: 1;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+/* ─── TOPBAR ──────────────────────────────────────────────────────────────── */
+.dash-topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.topbar-title h1 {
+    font-size: 1.8rem;
+    font-weight: 900;
+    font-style: italic;
+    text-transform: uppercase;
+    background: var(--gradient-main);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.topbar-title p { font-size: 0.8rem; color: var(--text-muted); margin-top: 4px; }
+
+.btn-back {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    transition: var(--transition-fast);
+    color: var(--text-muted);
+}
+.btn-back:hover { background: rgba(255, 46, 136, 0.15); color: white; border-color: var(--primary-pink); }
+
+/* ─── KPI GRID ────────────────────────────────────────────────────────────── */
+.kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 16px;
+}
+
+.kpi-card {
+    background: var(--bg-card);
+    border-radius: 10px;
+    padding: 22px 18px;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    transition: var(--transition-fast);
+    position: relative;
+    overflow: hidden;
+}
+
+.kpi-card:hover { transform: translateY(-3px); border-color: rgba(255, 46, 136, 0.25); }
+
+/* Skeleton loader */
+.kpi-card.loading .kpi-value {
+    background: rgba(255,255,255,0.07);
+    color: transparent;
+    border-radius: 4px;
+    animation: pulse 1.5s ease-in-out infinite;
+}
+@keyframes pulse { 0%,100% { opacity: 0.4; } 50% { opacity: 0.8; } }
+
+.featured-kpi {
+    border-top: 3px solid var(--primary-pink);
+    background: linear-gradient(145deg, rgba(138,43,226,0.12), var(--bg-card));
+}
+
+/* KPI de voltas com destaque especial */
+.kpi-laps {
+    grid-column: span 2;
+    border-top: 3px solid var(--primary-purple);
+    background: linear-gradient(145deg, rgba(0,123,255,0.1), var(--bg-card));
+}
+
+.kpi-label { font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700; letter-spacing: 1px; }
+.kpi-value { font-size: 2.2rem; font-weight: 900; font-style: italic; color: var(--text-light); }
+.kpi-laps .kpi-value { font-size: 2.8rem; background: var(--gradient-main); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.featured-kpi .kpi-value { background: var(--gradient-main); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.kpi-sub { font-size: 0.7rem; color: var(--text-muted); }
+
+/* ─── LAYOUT DE LINHA ─────────────────────────────────────────────────────── */
+.dash-row { display: grid; grid-template-columns: 1fr 360px; gap: 20px; }
+
+/* ─── CARDS GENÉRICOS ─────────────────────────────────────────────────────── */
+.dash-card {
+    background: var(--bg-card);
+    border-radius: 10px;
+    padding: 25px;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+}
+.dash-card--wide { /* padrão */ }
+.dash-card--full { width: 100%; }
+
+.dash-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.dash-card-header h2 { font-size: 1rem; font-weight: 900; text-transform: uppercase; letter-spacing: 1px; }
+
+.badge {
+    background: rgba(255, 46, 136, 0.15);
+    border: 1px solid rgba(255, 46, 136, 0.3);
+    color: var(--primary-pink);
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 0.7rem;
+    font-weight: 700;
+}
+
+/* ─── TABELA DE RESULTADOS ────────────────────────────────────────────────── */
+.table-wrapper { overflow-x: auto; }
+
+.results-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+
+.results-table th {
+    text-align: left;
+    padding: 10px 12px;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    font-weight: 700;
+    letter-spacing: 1px;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+}
+
+.results-table td { padding: 12px 12px; border-bottom: 1px solid rgba(255,255,255,0.04); vertical-align: middle; }
+.results-table tr:last-child td { border-bottom: none; }
+.results-table tr:hover td { background: rgba(255,255,255,0.03); }
+
+.td-round { color: var(--text-muted); font-weight: 700; width: 40px; }
+.td-points { font-weight: 700; color: var(--primary-blue); }
+
+.gp-name-cell { display: block; font-weight: 700; }
+.gp-circuit { display: block; font-size: 0.75rem; color: var(--text-muted); }
+
+/* Posições coloridas */
+.pos-win  { color: var(--primary-pink); font-weight: 900; }
+.pos-pod  { color: #ffd700; font-weight: 700; }
+.pos-norm { color: var(--text-light); font-weight: 700; }
+.pos-dnf  { color: var(--primary-red); font-weight: 700; }
+
+/* Volta mais rápida */
+.fastest-dot { color: var(--primary-purple); font-size: 0.8rem; }
+
+.loading-row { color: var(--text-muted); font-size: 0.85rem; padding: 20px 0; }
+.dash-error  { color: var(--primary-red); font-size: 0.85rem; padding: 15px 0; }
+
+/* ─── STANDINGS ───────────────────────────────────────────────────────────── */
+#standings-list { display: flex; flex-direction: column; gap: 14px; }
+
+.standing-row {
+    display: grid;
+    grid-template-columns: 32px 1fr auto 50px;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    border-radius: 6px;
+    transition: var(--transition-fast);
+}
+.standing-row:hover { background: rgba(255,255,255,0.03); }
+
+/* Destaque para nossa equipe */
+.standing-row.is-windspeed {
+    background: rgba(255, 46, 136, 0.08);
+    border: 1px solid rgba(255, 46, 136, 0.2);
+}
+
+.s-pos  { font-size: 0.75rem; font-weight: 900; color: var(--text-muted); }
+.s-team { font-size: 0.82rem; font-weight: 700; }
+.ws-tag { background: var(--primary-pink); color: white; font-size: 0.6rem; padding: 1px 5px; border-radius: 3px; vertical-align: middle; margin-left: 5px; }
+
+.s-bar-wrap { background: rgba(255,255,255,0.07); border-radius: 3px; height: 4px; overflow: hidden; }
+.s-bar      { height: 100%; background: var(--gradient-main); border-radius: 3px; transition: width 1s ease; }
+.is-windspeed .s-bar { background: var(--primary-pink); }
+
+.s-pts { font-size: 0.82rem; font-weight: 900; color: var(--text-light); text-align: right; }
+
+/* ─── COMPARATIVO DE PILOTOS ──────────────────────────────────────────────── */
+.comp-header {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 15px;
+    align-items: center;
+    margin-bottom: 25px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+}
+
+.comp-driver-name { font-size: 1rem; font-weight: 900; text-transform: uppercase; }
+.comp-driver-name:last-child { text-align: right; }
+.comp-vs { font-size: 0.8rem; font-weight: 900; color: var(--primary-pink); background: rgba(255,46,136,0.1); padding: 6px 12px; border-radius: 4px; }
+
+.comp-row {
+    display: grid;
+    grid-template-columns: 70px 1fr 70px;
+    grid-template-rows: auto auto;
+    gap: 5px 12px;
+    align-items: center;
+    margin-bottom: 18px;
+}
+
+.comp-val { font-size: 1rem; font-weight: 900; color: var(--text-muted); }
+.comp-val:last-of-type { text-align: right; }
+.comp-winner { color: var(--primary-pink); }
+
+.comp-bar-wrap { position: relative; height: 6px; background: rgba(255,255,255,0.05); border-radius: 3px; overflow: hidden; display: flex; }
+.comp-bar-hugo  { height: 100%; background: linear-gradient(90deg, var(--primary-blue), var(--primary-purple)); border-radius: 3px 0 0 3px; }
+.comp-bar-erick { height: 100%; background: linear-gradient(90deg, var(--primary-purple), var(--primary-pink)); border-radius: 0 3px 3px 0; }
+
+.comp-label { grid-column: 1 / -1; font-size: 0.7rem; text-transform: uppercase; color: var(--text-muted); font-weight: 700; letter-spacing: 1px; text-align: center; }
+
+/* ─── FOOTER ──────────────────────────────────────────────────────────────── */
+.dash-footer { text-align: center; color: var(--text-muted); font-size: 0.75rem; padding: 20px 0; border-top: 1px solid rgba(255,255,255,0.05); margin-top: auto; }
+
+/* ─── RESPONSIVO ──────────────────────────────────────────────────────────── */
+@media (max-width: 1200px) {
+    .kpi-grid { grid-template-columns: repeat(3, 1fr); }
+    .kpi-laps { grid-column: span 1; }
+    .dash-row { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 900px) {
+    .sidebar { width: 200px; }
+    .dash-main { margin-left: 200px; }
+    .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 700px) {
+    .sidebar { display: none; }
+    .dash-main { margin-left: 0; padding: 20px; }
+    .kpi-grid { grid-template-columns: 1fr 1fr; }
+}

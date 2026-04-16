@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acesso | Windspeed Racing</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,500;0,700;0,900;1,900&display=swap" rel="stylesheet">
+    
+    <style>
+        /* VARIÁVEIS DO SEU PROJETO ORIGINAL */
+        :root {
+            --bg-dark: #06080f;
+            --bg-card: #0f1424;
+            --primary-blue: #007bff;
+            --primary-purple: #8a2be2;
+            --primary-pink: #ff2e88;
+            --gradient-main: linear-gradient(90deg, #007bff, #8a2be2, #ff2e88);
+            --text-light: #ffffff;
+            --text-muted: #9aa4b2;
+            --font-main: 'Montserrat', sans-serif;
+            --transition-fast: 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-main);
+            color: var(--text-light);
+            line-height: 1.6;
+            /* Fundo com imagem e overlay escuro */
+            background: linear-gradient(rgba(6, 8, 15, 0.85), rgba(6, 8, 15, 0.95)), 
+                        url('https://via.placeholder.com/1920x1080/0a0f1f/8a2be2?text=F1+Paddock') center/cover;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        a { text-decoration: none; color: inherit; }
+
+        /* ESTILOS DA TELA DE LOGIN/REGISTRO */
+        .auth-wrapper {
+            width: 100%;
+            max-width: 450px;
+            padding: 20px;
+        }
+
+        .auth-card {
+            background: var(--bg-card);
+            padding: 40px;
+            border-radius: 8px;
+            border-top: 4px solid var(--primary-pink);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+            transition: var(--transition-fast);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        /* Logo */
+        .logo {
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 1.5rem;
+            font-weight: 900;
+            font-style: italic;
+            text-transform: uppercase;
+        }
+
+        .logo span {
+            background: var(--gradient-main);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .auth-title {
+            font-size: 1.5rem;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            font-weight: 900;
+        }
+
+        /* Formulário */
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            color: var(--text-light);
+            font-family: var(--font-main);
+            transition: var(--transition-fast);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary-pink);
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 10px rgba(255, 46, 136, 0.2);
+        }
+
+        /* Botão */
+        .btn-cta {
+            display: block;
+            width: 100%;
+            background: var(--gradient-main);
+            color: var(--text-light);
+            padding: 15px;
+            font-size: 1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            border-radius: 4px;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition-fast);
+            margin-top: 10px;
+        }
+
+        .btn-cta:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+
+        /* Links para trocar de tela */
+        .auth-switch {
+            text-align: center;
+            margin-top: 25px;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .auth-switch a {
+            color: var(--primary-blue);
+            font-weight: 700;
+            transition: var(--transition-fast);
+        }
+
+        .auth-switch a:hover {
+            color: var(--primary-pink);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="auth-wrapper">
+        <div class="auth-card" id="login-box">
+            <div class="logo">
+                <a href="#">Windspeed <span>RACING</span></a>
+            </div>
+            <h2 class="auth-title">Acesso ao Paddock</h2>
+            
+            <form action="index.html" method="GET">
+                <div class="form-group">
+                    <label>E-mail</label>
+                    <input type="email" class="form-control" placeholder="piloto@windspeed.com" required>
+                </div>
+                <div class="form-group">
+                    <label>Senha</label>
+                    <input type="password" class="form-control" placeholder="••••••••" required>
+                </div>
+                <button type="submit" class="btn-cta">Entrar</button>
+            </form>
+            
+            <p class="auth-switch">Novo na equipe? <a href="#" id="show-register">Registre-se</a></p>
+        </div>
+
+        <div class="auth-card hidden" id="register-box">
+            <div class="logo">
+                <a href="#">Windspeed <span>RACING</span></a>
+            </div>
+            <h2 class="auth-title">Novo Membro</h2>
+            
+            <form action="#">
+                <div class="form-group">
+                    <label>Nome Completo</label>
+                    <input type="text" class="form-control" placeholder="Ex: Ayrton Senna" required>
+                </div>
+                <div class="form-group">
+                    <label>E-mail</label>
+                    <input type="email" class="form-control" placeholder="piloto@windspeed.com" required>
+                </div>
+                <div class="form-group">
+                    <label>Senha</label>
+                    <input type="password" class="form-control" placeholder="••••••••" required>
+                </div>
+                <button type="submit" class="btn-cta">Criar Conta</button>
+            </form>
+            
+            <p class="auth-switch">Já faz parte da equipe? <a href="#" id="show-login">Faça Login</a></p>
+        </div>
+    </div>
+
+    <script>
+        // Lógica para alternar entre as telas de Login e Registro
+        const loginBox = document.getElementById('login-box');
+        const registerBox = document.getElementById('register-box');
+        const btnShowRegister = document.getElementById('show-register');
+        const btnShowLogin = document.getElementById('show-login');
+
+        btnShowRegister.addEventListener('click', (e) => {
+            e.preventDefault(); // Evita que a página recarregue ao clicar no link
+            loginBox.classList.add('hidden');
+            registerBox.classList.remove('hidden');
+        });
+
+        btnShowLogin.addEventListener('click', (e) => {
+            e.preventDefault();
+            registerBox.classList.add('hidden');
+            loginBox.classList.remove('hidden');
+        });
+    </script>
+
+</body>
+</html>
